@@ -11,8 +11,8 @@ console.log(message);
 字串前後採用 `（鍵盤數字1的左邊），再將需要的變數放入 ${} 內，除了顯示之外還可以在${} 內進行運算式的操作如下
 
 ```
-var numa = 1
-var numb = 2
+var a = 1
+var b = 2
 var message = `a + b = ${ a + b}`
 console.log(message);
 ```
