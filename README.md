@@ -97,7 +97,7 @@ showMembers();
 var showMembers = () => {
   this.preWorld = 'Hello ';
   ['Bill' , 'Kris' , 'Tommy'].forEach((v) => {
-    console.log(this.preWorld + v);
+    console.log(`${preWorld} ${v}`);
    });
 }
 showMembers();
