@@ -92,22 +92,61 @@ function showMembers(){
 }
 showMembers();
 ```
-看到 var self = this 因該滿熟悉的，這是為了解決匿名方法為了取得外層區塊 this 的做法，原本定義方法語法 [function] [argraments]，可以想像把他們顛倒過來在吧[function]改成 => 變成 [argraments] [=>]如下，而且匿名方法還可以直接透過 this 取得外層區塊的 this，ES 6 的這改變對我最有感。
+看到 var self = this 因該滿熟悉的，這是為了解決匿名方法為了取得外層區塊 this 的做法，原本定義方法語法 [function] [argraments]，可以想像把他們顛倒過來在吧[function]改成 => 變成 [argraments] [=>]如下，而且匿名方法還可以直接透過 this 取得外層區塊的 this，ES 6 的這改變讓程式碼更簡潔。
 ```
 var showMembers = () => {
   this.preWorld = 'Hello ';
   ['Bill' , 'Kris' , 'Tommy'].forEach((v) => {
-    console.log(`${preWorld} ${v}`);
+    console.log(this.preWorld + v);
    });
 }
 showMembers();
 ```
 
-## Extended Literals
-
-## Enhanced Regular Expression
-
 ## Enhanced Object Properties
+物件宣告更簡潔，讓屬性更強大
+```
+var firstName = 'Jeremy'
+var lastName = 'Lin'
+var customer = { firstName , lastName , [firstName+' number'] : 7 };
+console.log(customer);
+```
+得到結果`Object {firstName: "Jeremy", lastName: "Lin", Jeremy number: 7}`
+
+## Extended Parameter Handling
+Javascript 參數在方法定義三個如 a , b , c ，在呼叫時可以只帶入一個，執行時不會出錯不像 JAVA，但沒帶入的參數我們會希望給予預設值，ES5 的寫法
+```
+function fun(a , b , c){
+  if( b === undefined ){
+    b = 0;
+  }
+  if( c === undefined ){
+  c = 0;
+  }
+  return a + b + c;
+}
+fun( 1 );
+```
+ES 6 可在參數定義初始值
+```
+function fun(a , b = 0 , c = 0){
+  return a + b + c;
+}
+fun( 1 );
+```
+也可以吧多個參數合併在一個變數中，如下範例將會吧 b1 , b2 , b3 封裝為一個陣列
+```
+function fun(a , ...b){
+ console.log(b);
+}
+fun(1 , 'b1' , 'b2' , 'b3');
+```
+`[1 , 2 ].concat([3 ,4])`這段程式是將陣列合併，ES6 有更簡潔的宣告方式
+```
+var a = [3 , 4 ];
+var t = [1 , 2 , ...a];
+console.log(t);
+```
 
 ## Destructuring Assignment
 
@@ -132,3 +171,9 @@ showMembers();
 ## Meta-Programming
 
 ## Internationalization & Localization
+
+## Extended Literals
+
+## Enhanced Regular Expression
+
+
